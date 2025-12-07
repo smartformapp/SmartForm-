@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SmartForm_2025 </title>
+<script src="https://cdn.tailwindcss.com">document.getElementById('videoLogin').style.display='block';
+</script>
+<meta name="theme-color" content="#dc2626">
+<style>
+ 
+:root{
+  --brand: #1e3a8a; 
+  --accent: #d4af37; 
+  --bg: #f5f7fa; 
+  --card: #ffffff;
+  --text: #1f2937; 
+  --muted: #6b7280;
+  --accent-contrast: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg: #0d1117; 
+  --card: #161b22; 
+  --text: #e6edf3; 
+  --muted: #9ca3af;
+  --accent-contrast: #ffffff;
+}
+  
+html,body,#appRoot { 
+  height: 100%; 
+}
+
+body { 
+  margin:0; 
+  background:var(--bg); 
+  color:var(--text); 
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto; 
+  transition: background .18s, color .18s; 
+}
+
+  
+.side-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 230px;
+  backdrop-filter: blur(8px);
+  background: rgba(20, 30, 48, 0.85); 
+  color: var(--accent-contrast);
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  z-index: 99;
+  transition: width .25s ease;
+}
+
+.side-nav .brand {
+  font-weight: 800;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.side-nav .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--accent-contrast);
+  transition: background .20s ease, transform .20s ease;
+}
+
+.side-nav .nav-item:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateX(4px);
+}
+
+.side-nav .nav-item.active {
+  background: rgba(255,255,255,0.20);
+  font-weight: 600;
+  transform: translateX(6px);
+}
+
+.side-nav .nav-item .icon {
+  width: 28px;
+  font-size: 1.25rem;
+  text-align: center;
+  opacity: 0.9;
+}
+
+
+.side-nav .divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 8px 0;
+}
+
+
+.app-shell {
+  padding: 1rem;
+  margin-left: 0; 
+  min-height: 100vh;
+  transition: margin-left .18s;
+}
+
+@media(min-width: 900px){
+  .app-shell {
+    padding-left: 270px; 
+  }
+}
+
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 1.2rem;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+  color: var(--text);
+}
+#loginPage .card {
+  background: rgba(255, 255, 255, 0.20); /* Transparente */
+  backdrop-filter: blur(10px); /* Efecto glass */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.small { 
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.btn { 
+  padding: .65rem 1rem; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary { 
+  background: var(--brand); 
+  color: var(--accent-contrast);
+  transition: opacity .2s;
+}
+
+.btn-primary:hover { 
+  opacity: 0.9;
+}
+
+.btn-ghost { 
+  background: rgba(255,255,255,0.08); 
+  color: var(--text);
+}
+
+ 
+.fab {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: var(--accent-contrast);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 99;
+
+  
+  transition: 
+    transform .25s ease, 
+    box-shadow .25s ease, 
+    background .25s ease;
+}
+
+
+.fab:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.32);
+  background: var(--accent); 
+  color: #000;
+}
+
+
+
+
+.fab-center {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 22px;
+}
+
+
+.fab-bottom-right {
+  right: 22px;
+  bottom: 22px;
+}
+
+
+.fab-bottom-left {
+  left: 22px;
+  bottom: 22px;
+}
+#fabHelp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #007bff !important;
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  z-index: 9999;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+#loginSection.active ~ #fabHelp {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  #weatherHeader { 
+    flex-direction: column; 
+    text-align: center;
+  }
+}
+
+
+
+  .modal-backdrop { position: fixed; inset:0; background: rgba(2,6,23,0.45); display:flex; align-items:center; justify-content:center; z-index:100; }
+  .modal { width: 92%; max-width:520px; background: var(--card); border-radius:12px; padding:18px; box-shadow:0 12px 40px rgba(2,6,23,0.35); color:var(--text); }
+  .modal .muted { color:var(--muted); font-size:.95rem; }
+
+ 
+  .spinner { width:20px; height:20px; border-radius:50%; border:3px solid rgba(0,0,0,0.08); border-top-color: var(--brand); animation: spin .9s linear infinite; display:inline-block; vertical-align:middle; margin-right:8px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+
+  input, select, textarea { width:100%; padding:.6rem; border-radius:8px; border:1px solid rgba(0,0,0,0.08); background:transparent; color:var(--text); }
+  label { font-size:.9rem; display:block; margin-bottom:6px; color:var(--muted); }
+  .flex { display:flex; } .gap-2{ gap:.5rem; } .gap-3{ gap:.75rem; } .items-center{ align-items:center; } .justify-between{ justify-content:space-between; }
+
+    :focus { outline: 3px solid rgba(220,38,38,0.18); outline-offset: 2px; }
+
+  @media(max-width:899px){
+    .side-nav { width:64px; padding:0.5rem; gap:8px; }
+    .side-nav .brand { font-size:.92rem; }
+    .side-nav .label { display:none; }
+    .app-shell { padding-left: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="appRoot" data-theme="light">
+  
+  <nav class="side-nav" style="display:none;" role="navigation" aria-label="Menú principal">
+    <div class="brand" style="padding:0 6px;">
+      <div style="width:36px;height:36px;border-radius:8px;background:var(--accent-contrast);display:flex;align-items:center;justify-content:center;color:var(--brand);font-weight:700;">SF</div>
+      <div style="margin-left:8px;">
+        <div style="font-weight:700;">SmartForm</div>
+        <div class="small" style="opacity:.9;">Encuestas</div>
+      </div>
+    </div>
+
+    <div style="margin-top:6px; padding:6px;">
+      <div class="nav-item active" data-nav="inicio" role="button" tabindex="0">
+        <div class="icon">🏠</div><div class="label">Inicio</div>
+      </div>
+      <div class="nav-item" data-nav="crear" role="button" tabindex="0">
+        <div class="icon">✏️</div><div class="label">Crear encuesta</div>
+      </div>
+      <div class="nav-item" data-nav="formularios" role="button" tabindex="0">
+        <div class="icon">📂</div><div class="label">Formularios</div>
+      </div>
+      <div class="nav-item" data-nav="responder" role="button" tabindex="0">
+        <div class="icon">🗳️</div><div class="label">Responder</div>
+      </div>
+      <div class="nav-item" data-nav="reportes" role="button" tabindex="0">
+        <div class="icon">📈</div><div class="label">Reportes</div>
+      </div>
+
+      <hr style="border:none;height:1px;background:rgba(255,255,255,0.08);margin:12px 0;border-radius:1px;">
+
+      <div class="nav-item" data-nav="perfil" role="button" tabindex="0">
+        <div class="icon">👤</div><div class="label">Perfil</div>
+      </div>
+
+      <div class="nav-item" id="btnLogoutSmall" role="button" tabindex="0" style="margin-top:auto;background:rgba(0,0,0,0.06);">
+        <div class="icon">🔒</div><div class="label">Salir</div>
+      </div>
+    </div>
+  </nav>
+
+ 
+  <main class="app-shell" style="padding-left:0;">
+  
+<video id="videoLogin" autoplay muted loop playsinline 
+style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 1.40;
+  display: none;
+">
+  <source src="1234.mp4" type="video/mp4">
+</video>
+
+<div id="loginPage" class="min-h-screen flex items-center justify-center p-6">
+      <div class="card w-full max-w-md">
+        <div class="flex justify-center">
+    <img src="123.jpg" alt="Imagen" class="w-40">
+</div>
+<p id="customText"
+   class="text-center text-base sm:text-lg md:text-xl 
+          text-blue-300 font-medium max-w-xl mx-auto 
+          leading-relaxed tracking-wide">
+  SmartForm está siendo actualizado...
+</p>
+
+<!-- CONTENEDOR -->
+<div class="w-64 mx-auto mt-4">
+
+  <!-- Texto del porcentaje -->
+  <div class="text-center text-black text-sm mb-2" id="progressText">0%</div>
+
+  <!-- Barra -->
+  <div class="w-full bg-white/20 rounded-full h-2 overflow-hidden">
+    <div id="progressBar"
+         class="h-full bg-indigo-500 rounded-full transition-all duration-300"
+         style="width: 0%;">
+    </div>
+  </div>
+
+</div>
+<div style="text-align: center; margin-top: 40px;">
+  <a href="https://3amprg.my.canva.site/nuestro-nuevo-sitio-web">
+    <button style="
+      padding: 8px 16px;
+      background-color: #4da3ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    ">
+      Conoce mas de la nueva actualización
+    </button>
+  </a>
+</div>
+
+<script>
+  // Cambia el porcentaje (0–100)
+  function setProgress(percent) {
+    const p = Math.max(0, Math.min(100, percent)); // asegura el rango
+    document.getElementById("progressBar").style.width = p + "%";
+    document.getElementById("progressText").textContent = p + "%";
+  }
+
+  // Ejemplo automático (puedes borrarlo)
+  let value = 0;
+  const interval = setInterval(() => {
+    value += 1;
+    setProgress(value);
+    if (value >= 100) clearInterval(interval);
+  }, 3000);
+</script>
+
+      
+
+   
+    <div id="app" class="hidden">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px;">
+        <div>
+          <h2 id="appTitle" style="margin:0; font-size:1.25rem; font-weight:700;">SmartForm</h2>
+          <div class="small" id="userRole">Usuario</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button id="btnTheme" class="btn btn-ghost" title="Alternar tema">🌓</button>
+   
+        </div>
+      </div>
+
+      <div id="contentArea" class="card p-4">
+      
+      </div>
+    </div>
+
+  </main>
+
+
+ 
+<script>
+/* -------------------------
+   Utils & Theme (sin cambios)
+   ------------------------- */
+(function themeInit(){
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const stored = localStorage.getItem('sf_theme');
+  const theme = stored || (prefersDark ? 'dark' : 'light');
+  setTheme(theme);
+  window.setTheme = () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+  };
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+    document.getElementById('appRoot').setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+    localStorage.setItem('sf_theme', t);
+  }
+})();
+
+function uid(prefix='id'){ return prefix + '_' + Math.random().toString(36).slice(2,10); }
+function el(q){ return document.querySelector(q); }
+function elAll(q){ return Array.from(document.querySelectorAll(q)); }
+function timeNow(){ return new Date().toISOString(); }
+function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+function escapeAttr(s){ return escapeHtml(s).replace(/\n/g,' '); }
+
+/* DOM refs */
+let usuario = {};
+document.getElementById('videoLogin').style.display='block';
+document.querySelector('.app-shell').style.paddingLeft='0px';
+document.querySelector('.side-nav').style.display='none'; 
+const loginPage = el('#loginPage');
+const app = el('#app');
+const contentArea = el('#contentArea');
+const modalRoot = el('#modalRoot');
+const modalContent = el('#modalContent');
+const modalOk = el('#modalOk');
+const modalCancel = el('#modalCancel');
+const fabHelp = el('#fabHelp');
+
+/* Modal helpers */
+function serverShow(options){
+  modalContent.innerHTML = '';
+  modalOk.style.display = 'none';
+  modalCancel.style.display = 'none';
+  modalRoot.style.display = 'flex';
+
+  const title = options.title ? `<h3 id="modalTitle" style="margin:0 0 8px 0;">${escapeHtml(options.title)}</h3>` : '';
+  const loading = options.loading ? `<div class="muted"><span class="spinner"></span> ${escapeHtml(options.loading)}</div>` : '';
+  const html = `${title}<div class="muted">${escapeHtml(options.message||'')}</div>${loading}`;
+  modalContent.innerHTML = html;
+
+  if(options.showCancel){
+    modalCancel.textContent = options.cancelText || 'Cancelar';
+    modalCancel.style.display = 'inline-block';
+  } else modalCancel.style.display = 'none';
+
+  modalOk.textContent = options.okText || 'OK';
+  modalOk.style.display = 'inline-block';
+}
+
+function serverAlert(message, { title } = {}){
+  return new Promise(resolve => {
+    serverShow({ title, message, showCancel:false, okText:'OK' });
+    modalOk.onclick = () => { modalRoot.style.display = 'none'; resolve(); };
+    modalCancel.onclick = null;
+  });
+}
+
+function serverConfirm(message, { title } = {}){
+  return new Promise(resolve => {
+    serverShow({ title, message, showCancel:true, okText:'Sí', cancelText:'No' });
+    modalOk.onclick = () => { modalRoot.style.display = 'none'; resolve(true); };
+    modalCancel.onclick = () => { modalRoot.style.display = 'none'; resolve(false); };
+  });
+}
+
+/* Event bindings (some will be used after Firebase init) */
+el('#btnLogin').addEventListener('click', doLogin);
+el('#btnDemo').addEventListener('click', ()=> {
+  el('#nombre').value = 'Alumno Invitado';
+  el('#correo').value = 'Invitando @alumno.com';
+  el('#rol').value = 'alumno';
+});
+el('#btnTheme').addEventListener('click', ()=> window.setTheme());
+fabHelp.addEventListener('click', showHelpModal);
+el('#btnLogoutSmall').addEventListener('click', ()=> logout());
+
+elAll('.nav-item').forEach(n => {
+  n.addEventListener('click', ()=> {
+    const nav = n.getAttribute('data-nav');
+    if(nav) navigate(nav);
+    // active state
+    elAll('.nav-item').forEach(x=>x.classList.remove('active'));
+    n.classList.add('active');
+  });
+});
+
+/* -------------------------
+   FIRESTORE DB (compat SDK will be added below)
+   ------------------------- */
+
+/*
+  The DB object below uses firebase.firestore() (compat)
+  Methods return Promises. Use await DB.loadSurveys(), await DB.addSurvey(...)
+*/
+
+const DB = {
+  // Load all surveys (returns array)
+  async loadSurveys() {
+    try {
+      const snap = await firebase.firestore().collection("encuestas").orderBy("createdAt", "desc").get();
+      return snap.docs.map(d => d.data());
+    } catch (e) {
+      console.error("loadSurveys error", e);
+      return [];
+    }
+  },
+
+  async saveSurveys(surveys) {
+    // Replace whole collection (optional). We'll write each doc by id.
+    const col = firebase.firestore().collection("encuestas");
+    const batch = firebase.firestore().batch();
+    try {
+    
+      const old = await col.get();
+      old.docs.forEach(docSnap => batch.delete(docSnap.ref));
+      // Add new
+      surveys.forEach(s => {
+        const ref = col.doc(s.id);
+        batch.set(ref, s);
+      });
+      await batch.commit();
+    } catch (e) {
+      console.error("saveSurveys error", e);
+    }
+  },
+
+  async addSurvey(survey) {
+    try {
+      await firebase.firestore().collection("encuestas").doc(survey.id).set(survey);
+    } catch (e) {
+      console.error("addSurvey error", e);
+    }
+  },
+
+  async updateSurvey(id, survey) {
+    try {
+      await firebase.firestore().collection("encuestas").doc(id).set(survey);
+    } catch (e) {
+      console.error("updateSurvey error", e);
+    }
+  },
+
+  async deleteSurvey(id) {
+    try {
+      await firebase.firestore().collection("encuestas").doc(id).delete();
+    } catch (e) {
+      console.error("deleteSurvey error", e);
+    }
+  },
+
+  async loadResponses() {
+    try {
+      const snap = await firebase.firestore().collection("respuestas").orderBy("submittedAt", "desc").get();
+      return snap.docs.map(d => d.data());
+    } catch (e) {
+      console.error("loadResponses error", e);
+      return [];
+    }
+  },
+
+  async saveResponses(responses) {
+    const col = firebase.firestore().collection("respuestas");
+    const batch = firebase.firestore().batch();
+    try {
+      const old = await col.get();
+      old.docs.forEach(docSnap => batch.delete(docSnap.ref));
+      responses.forEach(r => {
+        const ref = col.doc(r.id);
+        batch.set(ref, r);
+      });
+      await batch.commit();
+    } catch (e) {
+      console.error("saveResponses error", e);
+    }
+  },
+
+  async addResponse(r) {
+    try {
+      await firebase.firestore().collection("respuestas").doc(r.id).set(r);
+    } catch (e) {
+      console.error("addResponse error", e);
+    }
+  }
+};
+
+
+function startApp(){
+  document.getElementById('videoLogin').style.display='none';
+  document.querySelector('.app-shell').style.paddingLeft='270px';
+  document.querySelector('.side-nav').style.display='flex';
+  loginPage.style.display = 'none';
+  app.classList.remove('hidden');
+  
+  el('#userRole').textContent = `${usuario.nombre} • ${usuario.rol}`;
+  fabHelp.style.display = 'flex';
+  navigate('inicio');
+}
+
+async function doLogin(){
+  const nombre = el('#nombre').value.trim();
+  const correo = el('#correo').value.trim();
+  const rol = el('#rol').value;
+  if(!nombre || !correo || !rol) return serverAlert('Completa todos los campos', { title: 'Error' });
+
+  if(rol === 'maestro' && !(/\bedu\b|\binstitucional\b/.test(correo))){
+    const ok = await serverConfirm('No parece un correo institucional. ¿Deseas continuar igual?', { title: 'Verificar correo' });
+    if(!ok) return;
+  }
+
+  const storedProfile = JSON.parse(localStorage.getItem('sf_profile_' + correo) || 'null');
+  usuario = Object.assign({ nombre, correo, rol, grupo:'', especialidad:'', photo:'' }, storedProfile || {});
+  startApp();
+}
+
+async function logout(){
+  const ok = await serverConfirm('¿Estás seguro de que quieres cerrar sesión?', { title:'Cerrar sesión' });
+  if(!ok) return;
+
+  serverShow({ loading: 'Cerrando sesión...', message: 'Comunicación con servidor en curso...' });
+  setTimeout(()=> {
+    modalRoot.style.display = 'none';
+    usuario = {};
+    document.getElementById('videoLogin').style.display='block';
+    document.querySelector('.app-shell').style.paddingLeft='0px';
+    document.querySelector('.side-nav').style.display='none';
+    loginPage.style.display = '';
+    app.classList.add('hidden');
+    fabHelp.style.display = 'none';
+    el('#nombre').value=''; el('#correo').value=''; el('#rol').value='';
+  }, 700);
+}
+
+function navigate(name){
+  switch(name){
+    case 'inicio': return renderInicio();
+    case 'crear': return renderCreator();
+    case 'formularios': return renderList();
+    case 'responder': return renderResponderList();
+    case 'reportes': return renderReportes();
+    case 'perfil': return renderPerfil();
+    default: renderInicio();
+  }
+}
+
+/* Render inicio */
+async function renderInicio(){
+  contentArea.innerHTML = `
+    <div class="card p-4" style="margin-bottom:18px; display:flex; align-items:center; gap:22px;">
+  <div id="w_icon" style="font-size:2.5rem;">⛅</div>
+
+  <div>
+    <div id="w_temp" style="font-size:1.8rem; font-weight:700;">--°C</div>
+    <div id="w_desc" class="small">Clima actual</div>
+  </div>
+
+  <div style="display:flex; gap:40px; margin-left:auto;">
+    <div class="small">
+      Máx/Mín<br>
+      <strong id="w_maxmin">--/-- °C</strong>
+    </div>
+    <div class="small">
+      Humedad<br>
+      <strong id="w_humidity">--%</strong>
+    </div>
+    <div class="small">
+      Viento<br>
+      <strong id="w_wind">-- km/h</strong>
+    </div>
+  </div>
+</div>
+    <div>
+      <h3 style="margin:0 0 6px 0; font-weight:700;">Bienvenido, ${escapeHtml(usuario.nombre)}</h3>
+      <p class="small">Usa el menú para crear encuestas, ver guardados o responder.</p>
+      <div style="margin-top:12px; display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:12px;">
+        <div class="card p-3">
+          <h4 style="margin:0 0 8px 0; font-weight:700;">Últimas encuestas</h4>
+          <div id="recentSurveys" class="small">Cargando...</div>
+        </div>
+        <div class="card p-3">
+          <h4 style="margin:0 0 8px 0; font-weight:700;">Acciones rápidas</h4>
+          <div style="margin-top:8px; display:flex; gap:8px;">
+            <button class="btn btn-primary" onclick="navigate('crear')">Crear nueva</button>
+            <button class="btn btn-ghost" onclick="navigate('formularios')">Ver guardadas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  loadDashboardWeather();
+
+  const rs = (await DB.loadSurveys()).slice(0,5);
+  const out = rs.length ? `<ul style="margin-top:8px;">${rs.map(s=>`<li style="padding:6px 0;"><strong>${escapeHtml(s.title)}</strong> • ${new Date(s.createdAt).toLocaleString()}</li>`).join('')}</ul>` : '<p class="small mt-2">No hay encuestas todavía.</p>';
+  el('#recentSurveys').innerHTML = out;
+}
+
+/* Crear / editar encuesta */
+function renderCreator(existingId){
+  // Note: this function contains inner async usages (we'll fetch when needed)
+  (async () => {
+    const allSurveys = await DB.loadSurveys();
+    const editing = existingId ? allSurveys.find(s=>s.id===existingId) : null;
+    const draft = editing ? editing : { id: uid('survey'), title:'', createdAt: timeNow(), createdBy: usuario.nombre, questions: [] };
+    contentArea.innerHTML = `
+      <div style="display:grid; grid-template-columns:1fr 320px; gap:12px;">
+        <div>
+          <h3 style="margin:0 0 8px 0; font-weight:700;">Editor de encuesta</h3>
+          <label>Título</label>
+          <input id="surveyTitle" value="${escapeAttr(draft.title)}" placeholder="Título de la encuesta" />
+          <div id="questionList" style="margin-top:12px;"></div>
+          <div style="margin-top:12px;">
+            <button id="btnAddQ" class="btn btn-primary">+ Añadir pregunta</button>
+            <button id="btnSaveSurvey" class="btn btn-primary" style="margin-left:8px;">Guardar encuesta</button>
+            ${editing ? `<button id="btnDeleteSurvey" class="btn" style="background:#ef4444;color:white;margin-left:8px;">Borrar</button>` : ''}
+            <button id="btnPreview" class="btn btn-ghost" style="margin-left:8px;">Vista previa</button>
+          </div>
+        </div>
+        <aside>
+          <h4 style="margin:0 0 8px 0; font-weight:700;">Constructor</h4>
+          <div class="small">Tipos de pregunta: Opción única, Selección múltiple, Texto</div>
+          <div style="margin-top:12px;">
+            <h5 style="margin:0 0 6px 0; font-weight:700;">Encuestas guardadas</h5>
+            <div id="miniSaved" class="small">Cargando...</div>
+          </div>
+        </aside>
+      </div>
+    `;
+    let survey = JSON.parse(JSON.stringify(draft));
+    renderQuestionList();
+    await renderMiniSaved();
+
+    el('#btnAddQ').addEventListener('click', ()=> {
+      survey.questions.push({ id: uid('q'), type: 'single', text: 'Pregunta nueva', options: ['Opción 1','Opción 2'] });
+      renderQuestionList();
+    });
+
+    el('#btnSaveSurvey').addEventListener('click', async ()=> {
+      const title = el('#surveyTitle').value.trim();
+      if(!title) return serverAlert('Agrega un título a la encuesta', { title: 'Guardar' });
+      survey.title = title; survey.createdAt = survey.createdAt || timeNow(); survey.createdBy = usuario.nombre;
+      
+      serverShow({ loading: 'Guardando encuesta...', message: 'Hablando con el servidor...' });
+      try {
+        if(editing) await DB.updateSurvey(survey.id, survey);
+        else await DB.addSurvey(survey);
+        modalRoot.style.display = 'none';
+        await serverAlert('Encuesta guardada ✅', { title:'Listo' });
+        navigate('formularios');
+      } catch(e) {
+        console.error(e);
+        modalRoot.style.display = 'none';
+        await serverAlert('Error guardando la encuesta', { title:'Error' });
+      }
+    });
+
+    if(editing){
+      el('#btnDeleteSurvey').addEventListener('click', async ()=> {
+        const ok = await serverConfirm('¿Eliminar encuesta?', { title:'Borrar' });
+        if(!ok) return;
+        serverShow({ loading:'Eliminando...', message:'Solicitando al servidor...' });
+        try {
+          await DB.deleteSurvey(editing.id);
+          modalRoot.style.display = 'none';
+          await serverAlert('Eliminada', { title:'Borrar' });
+          navigate('formularios');
+        } catch(e) {
+          console.error(e);
+          modalRoot.style.display = 'none';
+          await serverAlert('Error eliminando', { title:'Error' });
+        }
+      });
+    }
+
+    el('#btnPreview').addEventListener('click', ()=> showPreview(survey));
+
+    function renderQuestionList(){
+      const container = el('#questionList');
+      container.innerHTML = survey.questions.map((q, i) => questionCard(q, i+1)).join('');
+      container.querySelectorAll('[data-action]').forEach(btn => {
+        const action = btn.getAttribute('data-action');
+        const qid = btn.getAttribute('data-q');
+        btn.addEventListener('click', () => handleQAction(action, qid));
+      });
+      container.querySelectorAll('input[data-qtext]').forEach(inp => {
+        inp.addEventListener('input', (e)=> {
+          const id = inp.getAttribute('data-q');
+          const q = survey.questions.find(x=>x.id===id);
+          if(q) q.text = e.target.value;
+        });
+      });
+      container.querySelectorAll('input[data-opt]').forEach(inp => {
+        inp.addEventListener('input', (e)=> {
+          const id = inp.getAttribute('data-q');
+          const idx = +inp.getAttribute('data-idx');
+          const q = survey.questions.find(x=>x.id===id);
+          if(q) q.options[idx] = e.target.value;
+        });
+      });
+      container.querySelectorAll('button[data-addopt]').forEach(b=> {
+        b.addEventListener('click', ()=> {
+          const id = b.getAttribute('data-q');
+          const q = survey.questions.find(x=>x.id===id);
+          if(q){ q.options.push('Nueva opción'); renderQuestionList(); }
+        });
+      });
+    }
+
+    function questionCard(q, num){
+      if(q.type === 'text'){
+        return `<div style="padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.04); margin-bottom:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;"><strong>P${num} (Texto)</strong>
+            <div style="display:flex;gap:6px;">
+              <button data-action="moveUp" data-q="${q.id}" class="btn btn-ghost" style="padding:.3rem;">↑</button>
+              <button data-action="moveDown" data-q="${q.id}" class="btn btn-ghost" style="padding:.3rem;">↓</button>
+              <button data-action="changeType" data-q="${q.id}" class="btn btn-ghost" style="padding:.3rem;">Tipo</button>
+              <button data-action="delete" data-q="${q.id}" class="btn" style="background:#ef4444;color:#fff;padding:.3rem;">🗑</button>
+            </div>
+          </div>
+          <input data-q="${q.id}" data-qtext value="${escapeAttr(q.text)}" style="margin-top:8px;" />
+        </div>`;
+      } else {
+        return `<div style="padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.04); margin-bottom:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;"><strong>P${num} (${q.type === 'single' ? 'Única' : 'Múltiple'})</strong>
+            <div style="display:flex;gap:6px;">
+              <button data-action="moveUp" data-q="${q.id}" class="btn btn-ghost" style="padding:.3rem;">↑</button>
+              <button data-action="moveDown" data-q="${q.id}" class="btn btn-ghost" style="padding:.3rem;">↓</button>
+              <button data-action="changeType" data-q="${q.id}" class="btn btn-ghost" style="padding:.3rem;">Tipo</button>
+              <button data-action="delete" data-q="${q.id}" class="btn" style="background:#ef4444;color:#fff;padding:.3rem;">🗑</button>
+            </div>
+          </div>
+          <input data-q="${q.id}" data-qtext value="${escapeAttr(q.text)}" style="margin-top:8px;" />
+          <div style="margin-top:8px;">
+            ${q.options.map((opt, idx) => `<div style="display:flex;gap:8px;margin-bottom:6px;"><input data-q="${q.id}" data-opt data-idx="${idx}" value="${escapeAttr(opt)}"><button data-addopt data-q="${q.id}" class="btn btn-ghost">+</button></div>`).join('')}
+          </div>
+        </div>`;
+      }
+    }
+
+    function handleQAction(action, qid){
+      const idx = survey.questions.findIndex(x=>x.id===qid);
+      if(idx === -1) return;
+      if(action === 'delete'){ survey.questions.splice(idx,1); renderQuestionList(); return; }
+      if(action === 'moveUp' && idx>0){ const a=survey.questions[idx-1]; survey.questions[idx-1]=survey.questions[idx]; survey.questions[idx]=a; renderQuestionList(); return; }
+      if(action === 'moveDown' && idx<survey.questions.length-1){ const a=survey.questions[idx+1]; survey.questions[idx+1]=survey.questions[idx]; survey.questions[idx]=a; renderQuestionList(); return; }
+      if(action === 'changeType'){ const q = survey.questions[idx]; q.type = (q.type === 'single' ? 'multiple' : q.type === 'multiple' ? 'text' : 'single'); if(q.type!=='text' && !q.options) q.options=['Opción 1']; renderQuestionList(); return; }
+    }
+
+    async function renderMiniSaved(){
+      const ms = (await DB.loadSurveys()).slice(0,6);
+      el('#miniSaved').innerHTML = ms.length ? `<ul>${ms.map(s=>`<li style="padding:6px 0;">${escapeHtml(s.title)} <button data-load="${s.id}" style="margin-left:8px;" class="btn btn-ghost small">Editar</button></li>`).join('')}</ul>` : '<p class="small">No hay guardadas</p>';
+      elAll('#miniSaved [data-load]').forEach(b => b.addEventListener('click', ()=> renderCreator(b.getAttribute('data-load'))));
+    }
+
+  })();
+}
+
+/* Listado de encuestas */
+async function renderList(){
+  const surveys = await DB.loadSurveys();
+  contentArea.innerHTML = `
+    <h3 style="margin:0 0 8px 0; font-weight:700;">Encuestas guardadas</h3>
+    <div style="margin-top:12px;">
+      ${surveys.length ? `<table style="width:100%; border-collapse:collapse;"><thead><tr><th style="text-align:left;padding:8px;">Título</th><th style="text-align:left;padding:8px;">Autor</th><th style="padding:8px;">Creada</th><th style="padding:8px;">Acciones</th></tr></thead><tbody>
+        ${surveys.map(s=>`<tr style="border-top:1px solid rgba(0,0,0,0.04);"><td style="padding:8px;">${escapeHtml(s.title)}</td><td style="padding:8px;">${escapeHtml(s.createdBy)}</td><td style="padding:8px;">${new Date(s.createdAt).toLocaleString()}</td><td style="padding:8px;">
+            <button data-edit="${s.id}" class="btn btn-ghost small">Editar</button>
+            <button data-delete="${s.id}" class="btn" style="background:#ef4444;color:white;margin-left:6px;">Borrar</button>
+            <button data-share="${s.id}" class="btn btn-ghost small" style="margin-left:6px;">Compartir</button>
+          </td></tr>`).join('')}
+      </tbody></table>` : '<p class="small">No hay encuestas guardadas.</p>'}
+    </div>
+  `;
+  elAll('[data-edit]').forEach(b => b.addEventListener('click', ()=> renderCreator(b.getAttribute('data-edit'))));
+  elAll('[data-delete]').forEach(b => b.addEventListener('click', async ()=> {
+    const id = b.getAttribute('data-delete');
+    const ok = await serverConfirm('Eliminar encuesta?');
+    if(!ok) return;
+    serverShow({ loading:'Eliminando...', message:'Enviando petición al servidor...' });
+    try {
+      await DB.deleteSurvey(id);
+      modalRoot.style.display='none';
+      await serverAlert('Encuesta eliminada');
+      renderList();
+    } catch(e) {
+      console.error(e);
+      modalRoot.style.display='none';
+      await serverAlert('Error eliminando encuesta');
+    }
+  }));
+  elAll('[data-share]').forEach(b => b.addEventListener('click', async ()=> {
+    const id = b.getAttribute('data-share');
+    const s = (await DB.loadSurveys()).find(x=>x.id===id);
+    if(!s) return serverAlert('No encontrada');
+    const payload = JSON.stringify(s);
+    navigator.clipboard?.writeText(payload).then(()=> serverAlert('Encuesta copiada al portapapeles (JSON). Puedes pegarla en otro SmartForm.'));
+  }));
+}
+
+/* Responder lista */
+async function renderResponderList(){
+  const surveys = await DB.loadSurveys();
+  contentArea.innerHTML = `
+    <h3 style="margin:0 0 8px 0; font-weight:700;">Responder encuesta</h3>
+    <div style="margin-top:12px;">
+      ${surveys.length ? `<ul>${surveys.map(s=>`<li style="padding:10px 0;"><strong>${escapeHtml(s.title)}</strong> • ${new Date(s.createdAt).toLocaleDateString()} <button data-take="${s.id}" class="btn btn-ghost" style="margin-left:8px;">Responder</button></li>`).join('')}</ul>` : '<p class="small">No hay encuestas disponibles.</p>'}
+    </div>
+  `;
+  elAll('[data-take]').forEach(b => b.addEventListener('click', ()=> renderTakeSurvey(b.getAttribute('data-take'))));
+}
+
+/* Tomar encuesta */
+function renderTakeSurvey(id){
+  (async () => {
+    const s = (await DB.loadSurveys()).find(x=>x.id===id);
+    if(!s) return serverAlert('Encuesta no encontrada', { title:'Error' });
+    let answers = {};
+    contentArea.innerHTML = `
+      <div>
+        <h3 style="margin:0 0 6px 0; font-weight:700;">${escapeHtml(s.title)}</h3>
+        <p class="small">Autor: ${escapeHtml(s.createdBy)} • ${new Date(s.createdAt).toLocaleString()}</p>
+        <form id="takeForm" style="margin-top:12px; display:flex; flex-direction:column; gap:12px;"></form>
+        <div style="margin-top:6px; display:flex; gap:8px; align-items:center;">
+          <input id="responderName" placeholder="Tu nombre (opcional)" style="flex:1;">
+          <button id="submitResp" class="btn btn-primary">Enviar respuesta</button>
+        </div>
+      </div>
+    `;
+
+    const form = el('#takeForm');
+    s.questions.forEach((q, i) => {
+      const qElm = document.createElement('div');
+      qElm.style.padding = '10px';
+      qElm.style.border = '1px solid rgba(0,0,0,0.04)';
+      qElm.style.borderRadius = '8px';
+      qElm.innerHTML = `<div><strong>P${i+1}.</strong> ${escapeHtml(q.text)}</div>`;
+      if(q.type === 'text'){
+        const inp = document.createElement('input'); inp.className=''; inp.placeholder='Respuesta...'; inp.style.marginTop='8px';
+        inp.addEventListener('input', e=> answers[q.id] = e.target.value);
+        qElm.appendChild(inp);
+      } else {
+        const list = document.createElement('div'); list.style.marginTop='8px';
+        q.options.forEach((opt, idx)=>{
+          const wrapper = document.createElement('label'); wrapper.style.display='flex'; wrapper.style.alignItems='center'; wrapper.style.gap='8px';
+          const input = document.createElement('input');
+          input.type = q.type === 'single' ? 'radio' : 'checkbox';
+          input.name = 'q_'+q.id;
+          input.value = opt;
+          input.addEventListener('change', ()=>{
+            if(q.type === 'single') answers[q.id] = input.value;
+            else {
+              const checked = Array.from(document.querySelectorAll(`input[name="q_${q.id}"]`)).filter(n=>n.checked).map(n=>n.value);
+              answers[q.id] = checked;
+            }
+          });
+          wrapper.appendChild(input);
+          wrapper.appendChild(document.createTextNode(opt));
+          list.appendChild(wrapper);
+        });
+        qElm.appendChild(list);
+      }
+      form.appendChild(qElm);
+    });
+
+    el('#submitResp').addEventListener('click', async (ev)=> {
+      ev.preventDefault();
+      const responder = el('#responderName').value.trim() || usuario.nombre || 'Anon';
+      const resp = { id: uid('resp'), surveyId: s.id, responder, submittedAt: timeNow(), answers };
+      // simulate server send
+      serverShow({ loading: 'Enviando respuestas...', message: 'Comunicación con servidor...' });
+      try {
+        await DB.addResponse(resp);
+        modalRoot.style.display = 'none';
+        await serverAlert('Respuesta enviada. ¡Gracias!');
+        navigate('inicio');
+      } catch (e) {
+        console.error(e);
+        modalRoot.style.display = 'none';
+        await serverAlert('Error enviando respuesta');
+      }
+    });
+  })();
+}
+
+/* Reportes */
+async function renderReportes(){
+  const surveys = await DB.loadSurveys();
+  const responses = await DB.loadResponses();
+  contentArea.innerHTML = `
+    <h3 style="margin:0 0 8px 0; font-weight:700;">Reportes</h3>
+    <div style="margin-top:12px;">
+      <p class="small">Total encuestas: ${surveys.length} • Total respuestas: ${responses.length}</p>
+      <div id="reportList" style="margin-top:12px;"></div>
+    </div>
+  `;
+  const rlist = el('#reportList');
+  if(!surveys.length) return rlist.innerHTML = '<p class="small">No hay encuestas.</p>';
+  rlist.innerHTML = surveys.map(s=>{
+    const count = responses.filter(r=>r.surveyId===s.id).length;
+    return `<div style="padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div><strong>${escapeHtml(s.title)}</strong><div class="small">${new Date(s.createdAt).toLocaleString()}</div></div>
+        <div style="text-align:right;">
+          <div class="small">Respuestas: ${count}</div>
+          <button data-open="${s.id}" class="btn btn-ghost" style="margin-top:6px;">Ver detalles</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  elAll('[data-open]').forEach(b => b.addEventListener('click', ()=> {
+    const id = b.getAttribute('data-open');
+    showReportDetail(id);
+  }));
+}
+
+async function showReportDetail(surveyId){
+  const s = (await DB.loadSurveys()).find(x=>x.id===surveyId);
+  const resps = (await DB.loadResponses()).filter(r=>r.surveyId===surveyId);
+  let html = `<h4 style="margin:0 0 8px 0;">${escapeHtml(s.title)}</h4><p class="small">Respuestas: ${resps.length}</p>`;
+  if(resps.length === 0) html += `<p class="small mt-2">Aún no hay respuestas.</p>`;
+  else {
+    s.questions.forEach(q=>{
+      if(q.type==='text'){ html += `<div style="margin-top:10px;"><strong>${escapeHtml(q.text)}</strong><ul class="small">${resps.map(r=>`<li>${escapeHtml(String((r.answers||{})[q.id]||'—'))}</li>`).join('')}</ul></div>`; }
+      else {
+        const counts = {};
+        resps.forEach(r=>{
+          const a = (r.answers||{})[q.id];
+          if(!a) return;
+          if(Array.isArray(a)) a.forEach(v=> counts[v]=(counts[v]||0)+1);
+          else counts[a] = (counts[a]||0)+1;
+        });
+        html += `<div style="margin-top:10px;"><strong>${escapeHtml(q.text)}</strong><ul class="small">${q.options.map(opt=>`<li>${escapeHtml(opt)} — ${counts[opt]||0}</li>`).join('')}</ul></div>`;
+      }
+    });
+  }
+  serverShow({ title:'Detalle del reporte', message:'', loading: false });
+  modalContent.innerHTML = html;
+  modalOk.style.display = 'none'; modalCancel.style.display = 'inline-block'; modalCancel.textContent = 'Cerrar';
+  modalCancel.onclick = ()=> { modalRoot.style.display='none'; };
+}
+
+/* Preview */
+function showPreview(survey){
+  let html = `<h4 style="margin:0 0 8px 0;">${escapeHtml(survey.title)}</h4>`;
+  survey.questions.forEach((q,i)=>{
+    html += `<div style="margin-top:8px;"><strong>P${i+1}.</strong> ${escapeHtml(q.text)}<div class="small" style="margin-top:6px;">Tipo: ${q.type}</div>`;
+    if(q.type!=='text') html += `<ul class="small" style="margin-top:6px;">${q.options.map(o=>`<li>${escapeHtml(o)}</li>`).join('')}</ul>`;
+    html += `</div>`;
+  });
+  modalContent.innerHTML = html;
+  modalOk.style.display = 'inline-block'; modalOk.textContent = 'Cerrar';
+  modalCancel.style.display = 'none';
+  modalOk.onclick = ()=> { modalRoot.style.display = 'none'; };
+  modalRoot.style.display = 'flex';
+}
+
+/* Help modal */
+function showHelpModal(){
+  const tips = [
+    'Ayuda para el login: Para continuar escribe tus datos en los campos y confirma el acceso Si algo no avanza revisa que la información esté completa y vuelve a intentar.  Ayuda del sistema:  usa el menú para moverte entre las secciones Crea nuevas encuestas y agrega preguntas con el botón de añadirComparte el enlace para que otras personas respondan Consulta los resultados en la sección de respuestas y ajusta tu diseño en cualquier momento',
+  ];
+  const html = `<h4 style="margin:0 0 8px 0;">Centro de ayuda</h4>
+    <div class="small">${escapeHtml('Soporte: smartform591@gmail.com')}</div>
+    <div style="margin-top:8px;"><strong>Consejos rápidos</strong><ul class="small" style="margin-top:8px;">${tips.map(t=>`<li>${escapeHtml(t)}</li>`).join('')}</ul></div>
+    <div style="margin-top:10px;" class="small"><strong>¿Necesitas más ayuda?</strong><div>Escribe a soporte o pregunta a tu profesor guía.</div></div>`;
+  modalContent.innerHTML = html;
+  modalOk.style.display = 'inline-block'; modalOk.textContent = 'Cerrar';
+  modalCancel.style.display = 'none';
+  modalOk.onclick = ()=> { modalRoot.style.display='none'; };
+  modalRoot.style.display = 'flex';
+}
+
+/* Perfil (mantengo localStorage para fotos/perfil) */
+function renderPerfil(){
+  const key = 'sf_profile_' + (usuario.correo || 'anon');
+  const stored = JSON.parse(localStorage.getItem(key) || 'null');
+  usuario = Object.assign(usuario, stored || {});
+  contentArea.innerHTML = `
+    <h3 style="margin:0 0 8px 0; font-weight:700;">Perfil</h3>
+    <div style="display:grid; grid-template-columns: 160px 1fr; gap:12px; align-items:start;">
+      <div>
+        <div style="width:140px;height:140px;border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,0.06); display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.02);">
+          <img id="profilePhoto" src="${usuario.photo||''}" alt="Foto de perfil" style="width:100%;height:100%;object-fit:cover; display:${usuario.photo?'block':'none'}">
+          <div id="avatarPlaceholder" style="font-weight:700;color:var(--muted); display:${usuario.photo?'none':'flex'};align-items:center;justify-content:center;width:100%;height:100%;">${usuario.nombre ? escapeHtml(usuario.nombre.split(' ').map(n=>n[0]||'').slice(0,2).join('').toUpperCase()) : 'SF'}</div>
+        </div>
+        <div style="margin-top:8px; display:flex; gap:8px;">
+          <input id="photoInput" type="file" accept="image/*" style="flex:1;">
+        </div>
+      </div>
+      <div>
+        <label>Nombre</label><input id="profileName" value="${escapeAttr(usuario.nombre||'')}" />
+        <label>Grupo</label><input id="profileGroup" value="${escapeAttr(usuario.grupo||'')}" />
+        <label>Especialidad</label><input id="profileSpec" value="${escapeAttr(usuario.especialidad||'')}" />
+        <label>Correo</label><input id="profileEmail" value="${escapeAttr(usuario.correo||'')}" />
+        <label>Contraseña</label><input id="profilePass" type="password" placeholder="********" />
+        <label>Rol</label><input id="profileRole" value="${escapeAttr(usuario.rol||'')}" />
+        <div style="margin-top:8px; display:flex; gap:8px;">
+          <button id="saveProfile" class="btn btn-primary">Guardar perfil</button>
+          <button id="cancelProfile" class="btn btn-ghost">Cancelar</button>
+        </div>
+        <div class="small" style="margin-top:8px;color:var(--muted);">La foto se guarda localmente en tu navegador.</div>
+      </div>
+    </div>
+  `;
+
+  el('#photoInput').addEventListener('change', ()=> {
+    const f = el('#photoInput').files[0];
+    if(!f) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      usuario.photo = e.target.result;
+      el('#profilePhoto').src = usuario.photo;
+      el('#profilePhoto').style.display = 'block';
+      el('#avatarPlaceholder').style.display = 'none';
+    };
+    reader.readAsDataURL(f);
+  });
+
+  el('#saveProfile').addEventListener('click', async ()=> {
+    usuario.nombre = el('#profileName').value.trim();
+    usuario.grupo = el('#profileGroup').value.trim();
+    usuario.especialidad = el('#profileSpec').value.trim();
+    usuario.correo = el('#profileEmail').value.trim();
+    usuario.rol = el('#profileRole').value.trim();
+    
+    if(!usuario.correo) return serverAlert('Ingresa un correo para guardar el perfil', { title:'Perfil' });
+    localStorage.setItem('sf_profile_' + usuario.correo, JSON.stringify(usuario));
+    serverShow({ loading:'Guardando perfil...', message:'Enviando datos al servidor...' });
+    setTimeout(()=> { modalRoot.style.display='none'; serverAlert('Perfil guardado'); el('#userRole').textContent = `${usuario.nombre} • ${usuario.rol}`; }, 700);
+  });
+
+  el('#cancelProfile').addEventListener('click', ()=> {
+    navigate('inicio');
+  });
+}
+
+/* Service worker registration (igual) */
+if('serviceWorker' in navigator){
+  const sw = `self.addEventListener('install', e=>{ self.skipWaiting(); });
+  self.addEventListener('activate', e=>{ self.clients.claim(); });
+  self.addEventListener('fetch', e=>{ /* noop: permite registro */ });`;
+  const blob = new Blob([sw], { type: 'application/javascript' });
+  const url = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(url).catch(()=>{/* silence */});
+}
+
+/* misc */
+document.addEventListener('DOMContentLoaded', ()=> {
+  document.addEventListener('keydown', e => { if(e.ctrlKey && e.key.toLowerCase()==='k'){ elAll('.nav-item')[0].classList.toggle('active'); } });
+});
+document.getElementById('videoLogin').style.display='block';
+
+function updateFabVisibility() {
+  const isLogin = document.getElementById("loginSection") && document.getElementById("loginSection").classList.contains("active");
+  document.getElementById("fabHelp").style.display = isLogin ? "none" : "flex";
+}
+
+function activateSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  const elSec = document.getElementById(id);
+  if(elSec) elSec.classList.add('active');
+  updateFabVisibility();
+}
+updateFabVisibility();
+
+/* Weather loader (igual) */
+async function loadDashboardWeather(){
+  const LAT=27.486, LON=-109.939, TZ="America/Hermosillo";
+
+  const url = new URL("https://api.open-meteo.com/v1/forecast");
+  url.search = new URLSearchParams({
+    latitude: LAT,
+    longitude: LON,
+    timezone: TZ,
+    current: ["temperature_2m","relative_humidity_2m","weather_code","wind_speed_10m"].join(","),
+    daily: ["temperature_2m_max","temperature_2m_min","weather_code"].join(",")
+  });
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const c = data.current;
+    const d = data.daily;
+
+    const icons = {
+      0:"☀️",1:"🌤️",2:"⛅",3:"☁️",
+      61:"🌧️",63:"🌧️",65:"🌧️",
+      80:"🌦️",95:"⛈️",96:"⛈️",99:"⛈️"
+    };
+
+    const icon = c && icons[c.weather_code] ? icons[c.weather_code] : "⛅";
+
+    if(document.getElementById("w_icon")) document.getElementById("w_icon").textContent = icon;
+    if(document.getElementById("w_temp")) document.getElementById("w_temp").textContent = Math.round(c.temperature_2m) + "°C";
+    if(document.getElementById("w_desc")) document.getElementById("w_desc").textContent = "Clima actual";
+    if(document.getElementById("w_humidity")) document.getElementById("w_humidity").textContent = c.relative_humidity_2m + "%";
+    if(document.getElementById("w_wind")) document.getElementById("w_wind").textContent = Math.round(c.wind_speed_10m) + " km/h";
+    if(document.getElementById("w_maxmin")) document.getElementById("w_maxmin").textContent =
+      `${Math.round(d.temperature_2m_max[0])}/${Math.round(d.temperature_2m_min[0])} °C`;
+
+  } catch (e) {
+    console.error("Error clima:", e);
+  }
+}
+
+</script>
+
+<!-- Firebase compat SDKs (no modules, compatibles con este archivo) -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Tu configuración (ya la tenías). Si la quieres ocultar, utiliza env/server later.
+  const firebaseConfig = {
+    apiKey: "AIzaSyCBiiY9GSlF-7r3wjBwcLCq5jyxKVOjAAE",
+    authDomain: "smartform-ee4bb.firebaseapp.com",
+    projectId: "smartform-ee4bb",
+    storageBucket: "smartform-ee4bb.firebasestorage.app",
+    messagingSenderId: "590912576678",
+    appId: "1:590912576678:web:5dd2406d46b31ada5b6867",
+    measurementId: "G-07XSZSSCQ5"
+  };
+
+  // Inicializar Firebase (compat)
+  try {
+    firebase.initializeApp(firebaseConfig);
+    // firebase.analytics(); // opcional
+  } catch(e) {
+    console.warn("firebase initialize error (si ya está inicializado está bien):", e);
+  }
+
+  // Nota: DB arriba ya usa firebase.firestore() por eso no necesitamos exponer db global aquí.
+  // Si quieres, puedes exponerlo:
+  window.firestore = firebase.firestore();
+</script>
+
+</body>
+</html>
