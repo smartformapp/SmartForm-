@@ -338,7 +338,7 @@ style="
    class="text-center text-base sm:text-lg md:text-xl 
           text-blue-300 font-medium max-w-xl mx-auto 
           leading-relaxed tracking-wide">
-  SmartForm está siendo actualizado...
+  SmartForm esta listo espera...
 </p>
 
 <!-- CONTENEDOR -->
@@ -355,39 +355,27 @@ style="
     </div>
   </div>
 
-</div>
-<div style="text-align: center; margin-top: 40px;">
-  <a href="https://3amprg.my.canva.site/nuestro-nuevo-sitio-web">
-    <button style="
-      padding: 8px 16px;
-      background-color: #4da3ff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-    ">
-      Conoce mas de la nueva actualización
-    </button>
-  </a>
-</div>
+
 
 <script>
-  // Cambia el porcentaje (0–100)
   function setProgress(percent) {
-    const p = Math.max(0, Math.min(100, percent)); // asegura el rango
+    const p = Math.max(0, Math.min(100, percent));
     document.getElementById("progressBar").style.width = p + "%";
     document.getElementById("progressText").textContent = p + "%";
   }
 
-  // Ejemplo automático (puedes borrarlo)
   let value = 0;
   const interval = setInterval(() => {
     value += 1;
     setProgress(value);
-    if (value >= 100) clearInterval(interval);
-  }, 3000);
+
+    if (value >= 100) {
+      clearInterval(interval);
+      window.location.href = "smartform.app.html"; // ⬅️ Aquí carga tu página
+    }
+  }, 800);
 </script>
+
 
       
 
